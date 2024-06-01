@@ -1,3 +1,3 @@
-public class hotel
-
-imwetmctieritretirjtciwtcert
+public class hotel{
+    private String name;
+}
