@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Hotel{
+	//ArrayList<Hotel> hotelList = new ArrayList<Hotel>();
     private String hotelName;
     private int numRooms;
     private float price;
@@ -15,10 +16,12 @@ public class Hotel{
         this.createRooms();
     }
     
-    public Hotel(String name){
+    public Hotel(String hotelName){
         this.hotelName = hotelName;
         this.numRooms = 1;
-        this.price = 1299;
+        this.price = 21999;
+        
+        this.createRooms();
     }
     
     
@@ -62,20 +65,93 @@ public class Hotel{
  	   return true;
     }
     
+    //with guest name
+    public void removeReservation(String guestName) {
+    	//int guestIndex;
+    	//String roomName;
+    	int reservationDay = 0;
+    	for(int i = 0; i < this.reservationsList.size(); i++) {
+    		if(this.reservationsList.get(i).getGuestName().equals(guestName)) {
+    			//roomName = this.reservationsList.get(i).getRoomInfo().getRoomName();
+    			for(int j = 0; j < this.roomsList.size(); j++) {
+    				if(this.reservationsList.get(i).getRoomInfo().getRoomName().equals(this.roomsList.get(j).getRoomName())) {
+    					for(int k = 0; k < this.roomsList.get(j).getDatesBooked().size(); k++ ) {
+    						if(this.roomsList.get(j).getDatesBooked().get(k) == this.reservationsList.get(i).getDaysStay().get(reservationDay)) {
+    							this.roomsList.get(j).getDatesBooked().remove(k);
+    							reservationDay++;
+    						}
+    					}
+    				}
+    			}
+    			
+    			this.reservationsList.remove(i);
+    		}
+    	}
+    	
+    	
+    }
     
+    //specific dates and room free up
+    public void removeReservation(int roomNum, int checkIn, int checkOut) {
+    	
+    }
     /*
     public boolean bookReservation(int checkIn, int checkOut, String guestName, int roomNum) {
     	this.bookRoom(checkIn, checkOut, roomNum);
     	
     }
-    /*
-    
-    /*
-    public boolean changeHotelName(String newName) {
-    	if()
-    	this.hotelName = newName;
-    }
     */
+    
+   
+    public boolean changeHotelName(String newName, ArrayList<Hotel> hotels) {
+    	for(int i = 0; i < hotels.size(); i++) {
+    		if(hotels.get(i).getHotelName().equals(newName)) {
+    			return false;
+    		}
+    	}
+    	
+    	this.hotelName = newName;
+    	return true;
+    }
+    
+    public int getHotelIndex(String name, ArrayList<Hotel> hotels) {
+    	int index = -1;
+    	for(int i = 0; i < hotels.size(); i++) {
+    		if(hotels.get(i).getHotelName().equals(name)) {
+    			index = i;
+    		}
+    	}
+    	return index;
+    }
+    
+    public void showRoomList() {
+    	int n = 1;
+    	for(int i = 0; i < this.roomsList.size(); i++) {
+    		System.out.format("%5s" , this.roomsList.get(i).getRoomName());
+    		n++;
+    		
+    		if(n % 6 == 0) {
+    			System.out.print("  ");
+    			System.out.println();
+    			n++;
+    		}
+    		
+    	}
+
+    	
+    }
+    
+    public boolean changePrice(float price) {
+    	if(this.reservationsList.size() != 0) {
+    		return false;
+    	}
+    	this.price = price;
+    	return true;
+    }
+    
+    public boolean removeRooms() {
+    	return true;
+    }
     
     public ArrayList<Room> getRoomsList() {
     	return roomsList;
