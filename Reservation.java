@@ -27,6 +27,10 @@ public class Reservation{
     	return (this.checkOut - this.checkIn) * this.room.getPrice();
     }
     
+    public void setRoomInfo(Room room) {
+    	this.room = room;
+    }
+    
     public String getGuestName() {
     	return this.guestName;
     }
