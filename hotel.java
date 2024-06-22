@@ -29,7 +29,7 @@ public class Hotel{
     public void createRooms(){
         int n = 1;
         for(int i = 0; i < this.numRooms; i++){
-        	this.roomsList.add(new Room(""+n, this.price));
+        	this.roomsList.add(new Room(n, this.price));
             n++;
         }
     }
@@ -54,8 +54,29 @@ public class Hotel{
     		n++;
     	}while(n < checkOut);// room is available again on day of checkout so not included
     	
+    	/*
+    	int roomIndex = -1;
+    	for(int i = 0; i < this.roomsList.size(); i++) {
+    		if(this.roomsList.get(i).getRoomName() == roomNum) {
+    			roomIndex = i;
+    		}
+    	}
+    	
+    	if(roomIndex == -1) {
+    		System.out.println("Error booking room, room does not exist");
+    		return false;//room does not exist
+    	}
+    	*/
+    	
+    	int roomIndex = this.getRoomIndex(roomNum);
+    	
+    	if(roomIndex == -1) {
+    		System.out.println("Error booking room, room does not exist");
+    		return false;//room does not exist
+    	}
+    	
     	//checking availability of rooms
- 		for(int d: roomsList.get(roomNum-1).getDatesBooked()) {
+ 		for(int d: roomsList.get(roomIndex).getDatesBooked()) {
  			   for(int b: bookDates) {
  				   if(d == b) {
  					  System.out.println("Tried booking booked room");
@@ -64,12 +85,13 @@ public class Hotel{
  			   }
  	   }
  	   
- 	   roomsList.get(roomNum-1).setDatesBooked(checkIn, checkOut);
- 	   reservationsList.add(new Reservation(guestName, checkIn, checkOut, roomsList.get(roomNum-1)));
+ 	   roomsList.get(roomIndex).setDatesBooked(checkIn, checkOut);
+ 	   reservationsList.add(new Reservation(guestName, checkIn, checkOut, roomsList.get(roomIndex)));
  	   return true;
     }
     
     //with guest name
+    // removes reservation, adjusts dates boooked of room
     public boolean removeReservation(String guestName) {
     	//int guestIndex;
     	//String roomName;
@@ -81,7 +103,7 @@ public class Hotel{
     		if(this.reservationsList.get(i).getGuestName().equals(guestName)) {
     			//roomName = this.reservationsList.get(i).getRoomInfo().getRoomName();
     			for(int j = 0; j < this.roomsList.size(); j++) {
-    				if(this.reservationsList.get(i).getRoomInfo().getRoomName().equals(this.roomsList.get(j).getRoomName())) {
+    				if(this.reservationsList.get(i).getRoomInfo().getRoomName() == this.roomsList.get(j).getRoomName()) {
     					while( k < this.roomsList.get(j).getDatesBooked().size()) {
     						
     						if(this.roomsList.get(j).getDatesBooked().get(k) == this.reservationsList.get(i).getDaysStay().get(reservationDay) ) {
@@ -117,17 +139,34 @@ public class Hotel{
     }
     */
     
+    //numRooms is num of rooms to add
     public boolean addRoom(int numRooms) {
-    	int name = this.roomsList.getLast().getRoomName().charAt(0) - 48;
+    	if(this.roomsList.size() + numRooms > 50 || numRooms < 1) {
+    		return false;
+    	}
+    	
+    	int roomName = this.roomsList.getLast().getRoomName() + 1;
+    	for(int i = 0; i < numRooms; i++) {
+    		this.roomsList.add(new Room(roomName, this.getPrice()));
+    		roomName++;
+    	}
+    	return true;
     }
     
     public boolean removeRoom(int roomNum) {
-    	if(this.roomsList.get(roomNum-1).getDatesBooked().size() != 0) {
+    	
+    	int roomIndex = this.getRoomIndex(roomNum);
+    	if(roomIndex == -1) {
+    		System.out.println("Error cannot remove room that does not exist");
+    		return false;
+    	}
+    	
+    	if(this.roomsList.get(roomIndex).getDatesBooked().size() != 0) {
     		return false;
     	}
     	else
     	{
-    		this.roomsList.remove(roomNum-1);
+    		this.roomsList.remove(roomIndex);
     		//rearrange naming scheme
     		/*
     		int n = 1;
@@ -178,6 +217,47 @@ public class Hotel{
     	
     }
     
+    public int getRoomIndex(int roomNum) {
+    	int roomIndex = -1;
+    	for(int i = 0; i < this.roomsList.size(); i++) {
+    		if(this.roomsList.get(i).getRoomName() == roomNum) {
+    			roomIndex = i;
+    		}
+    	}
+    	
+    	return roomIndex;
+    }
+    
+    public int getReservIndex(String guest) {
+    	int index = -1;
+    	for(int i = 0; i < this.reservationsList.size(); i++) {
+    		if(this.reservationsList.get(i).getGuestName().equals(guest)) {
+    			index = i;
+    		}
+    	}
+    	
+    	return index;
+    }
+    
+    public ArrayList<Integer> getRoomAvailability(int date){
+    	ArrayList<Integer> rooms = new ArrayList<Integer>();//rooms available on this date
+    	boolean present;
+    	for(int i = 0; i < this.roomsList.size(); i++) {
+    		present = false;
+    		for(int j = 0; j < this.roomsList.get(i).getDatesBooked().size(); j++) {
+    			if(this.roomsList.get(i).getDatesBooked().get(j) == date) {
+    				present = true;
+    			}
+    		}
+    		if(present == false) {
+    			rooms.add(this.roomsList.get(i).getRoomName());
+    		}
+    		
+    	}
+    	
+    	return rooms;
+    }
+    
     public boolean changePrice(float price) {
     	if(this.reservationsList.size() != 0 ) {
     		return false;
@@ -189,6 +269,14 @@ public class Hotel{
     	return true;
     }
     
+    public float getTotalEarnings() {
+    	float sum = 0;
+    	for(int  i = 0; i < this.reservationsList.size(); i++) {
+    		sum = sum + this.reservationsList.get(i).getTotalPay();
+    	}
+    	
+    	return sum;
+    }
     
     public ArrayList<Room> getRoomsList() {
     	return roomsList;
