@@ -1,6 +1,16 @@
+import java.util.ArrayList;
 
 public class Management {
 	//print reservation details
+	private static ArrayList<Hotel> hotelsList = new ArrayList<Hotel>();
+	
+	public static void addHotel(Hotel hotel) {
+		hotelsList.add(hotel);
+	}
+	
+	public static void removeHotel(Hotel hotel) {
+		hotelsList.add(hotel);
+	}
 	
 	public static void displayReservation(Reservation reservation) {
 		System.out.println("Guest name: " + reservation.getGuestName() + "\n");
@@ -17,6 +27,15 @@ public class Management {
 		System.out.println(room.getDatesBooked());
 	}
 	
+	 public static int getHotelIndex(String name, ArrayList<Hotel> hotels) {
+	    	int index = -1;
+	    	for(int i = 0; i < hotels.size(); i++) {
+	    		if(hotels.get(i).getHotelName().equals(name)) {
+	    			index = i;
+	    		}
+	    	}
+	    	return index;
+	    }
 	///print hotel info
 	
 	
