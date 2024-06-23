@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Room{
     private int roomName;
     private ArrayList<Integer> datesBookedList = new ArrayList<Integer>(); //1-31
-    private boolean status = true;//true means open room
+    //private boolean status = true;//true means open room
     private float price;
 
     public Room(int roomName, float price){
@@ -55,6 +55,10 @@ public class Room{
     	this.roomName = roomName;
     }
     
+    public void changePrice(float price) {
+    	this.price = price;
+    }
+    /*
     public void changeStatus() {
     	this.status = !this.status;
     }
@@ -62,7 +66,7 @@ public class Room{
     public boolean getStatus() {
     	return this.status;
     }
-    
+    */
     public int getRoomName(){
         return this.roomName;
     }

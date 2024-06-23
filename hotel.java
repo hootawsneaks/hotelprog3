@@ -25,7 +25,7 @@ public class Hotel{
         this.createRooms();
     }
     */
-    
+    // for initialzing the rooms when a hotel is created
     public void createRooms(){
         int n = 1;
         for(int i = 0; i < this.numRooms; i++){
@@ -34,7 +34,7 @@ public class Hotel{
         }
     }
     
-    // pwedeng private?
+    //books a reservation makes all its info and books the dates for the chosen room
     public boolean bookReservation(String guestName, int checkIn, int checkOut, int roomNum) {
     	//bawal checkin last day, bawal checkOut first
     	if(!(checkIn >= 1 && checkIn < 31)) {
@@ -153,6 +153,7 @@ public class Hotel{
     	return true;
     }
     
+    //removes a room if that room no reservation
     public boolean removeRoom(int roomNum) {
     	
     	int roomIndex = this.getRoomIndex(roomNum);
@@ -179,6 +180,7 @@ public class Hotel{
     	}
     }
    
+    //changes hotel name if no other same name
     public boolean changeHotelName(String newName, ArrayList<Hotel> hotels) {
     	for(int i = 0; i < hotels.size(); i++) {
     		if(hotels.get(i).getHotelName().equals(newName)) {
@@ -190,16 +192,7 @@ public class Hotel{
     	return true;
     }
     
-    public int getHotelIndex(String name, ArrayList<Hotel> hotels) {
-    	int index = -1;
-    	for(int i = 0; i < hotels.size(); i++) {
-    		if(hotels.get(i).getHotelName().equals(name)) {
-    			index = i;
-    		}
-    	}
-    	return index;
-    }
-    
+    //list of rooms in existence
     public void showRoomList() {
     	int n = 1;
     	for(int i = 0; i < this.roomsList.size(); i++) {
@@ -217,6 +210,7 @@ public class Hotel{
     	
     }
     
+    //gives index of a room given its roomNum
     public int getRoomIndex(int roomNum) {
     	int roomIndex = -1;
     	for(int i = 0; i < this.roomsList.size(); i++) {
@@ -228,6 +222,7 @@ public class Hotel{
     	return roomIndex;
     }
     
+    //gives index of a reservation give the guest name
     public int getReservIndex(String guest) {
     	int index = -1;
     	for(int i = 0; i < this.reservationsList.size(); i++) {
@@ -239,6 +234,7 @@ public class Hotel{
     	return index;
     }
     
+    //returns list of rooms goods on a single date
     public ArrayList<Integer> getRoomAvailability(int date){
     	ArrayList<Integer> rooms = new ArrayList<Integer>();//rooms available on this date
     	boolean present;
@@ -257,7 +253,37 @@ public class Hotel{
     	
     	return rooms;
     }
+     
+    //returns  list of rooms good from dates checkin to checkut - 1
+    public ArrayList<Integer> getRoomAvailability(int checkIn, int checkOut){
+    	ArrayList<Integer> rooms = new ArrayList<Integer>();//rooms available on this date
+    	int count = 0;
+    	int dateIndex;
+    	ArrayList<Integer> bookDates = new ArrayList<Integer>();
+    	int n = checkIn;
+    	do {
+    		bookDates.add(n);
+    		n++;
+    	}while(n < checkOut);// room is available again on day of checkout so not included
+    	
+    	for(int i = 0; i < this.roomsList.size(); i++) {
+    		count = 0;
+    		dateIndex = 0;
+    		for(int j = 0; j < this.roomsList.get(i).getDatesBooked().size(); j++) {
+    			if(this.roomsList.get(i).getDatesBooked().get(j) == bookDates.get(dateIndex)) {
+    				count++;
+    				dateIndex++;
+    			}
+    		}
+    		if(count == bookDates.size()) {
+    			rooms.add(this.roomsList.get(i).getRoomName());
+    		}
+    	}
+    	
+    	return rooms;
+    }
     
+    //change room if no reservations across the whole hotel
     public boolean changePrice(float price) {
     	if(this.reservationsList.size() != 0 ) {
     		return false;
@@ -266,6 +292,10 @@ public class Hotel{
     		return false;
     	}
     	this.price = price;
+    	for(int i = 0; i < roomsList.size(); i++) {
+    		roomsList.get(i).changePrice(price);
+    	}
+    	
     	return true;
     }
     
