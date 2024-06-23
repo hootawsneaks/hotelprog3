@@ -65,7 +65,28 @@ public class Driver{
 					break;
 
 				case 2:
+					/*In this feature, the user can view the current information found in a selected hotel. This would
+					include high-level information of the hotel and low-level information based on what the user would
+					like to see. See the following for more information:
+					a. High-level hotel information should include the name of the hotel, total number of rooms,
+					estimate earnings for the month (i.e. sum of total price across all reservations)
+					b. Available low-level information should include the following:
+					i. Total number of available and booked rooms for a selected date
+					ii. Information about a selected room, such as the room’s name, price per night, and
+					availability across the entire month
+					iii. Information about a selected reservation, such as the guest information, room
+					information, check-in and -out dates, the total price for the booking, and the
+					breakdown of the price per night*/
+
+					String stringInput;
+					int hotelIndex;
+
+					printString("Pick a hotel (index for now)");
+					hotelIndex = scan.nextInt();
+
 					
+
+
 
 					break;
 
