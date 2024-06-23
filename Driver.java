@@ -24,6 +24,7 @@ public class Driver{
 			printString("3: Manage Hotel");
 			ln();
 			printString("4: Simulate Booking");
+			ln();
 			choiceInput = scan.nextInt();
 			switch (choiceInput){
 				case 0:
@@ -77,18 +78,22 @@ public class Driver{
 					iii. Information about a selected reservation, such as the guest information, room
 					information, check-in and -out dates, the total price for the booking, and the
 					breakdown of the price per night*/
-
-					String stringInput;
 					int hotelIndex;
 
-					printString("Pick a hotel (index for now)");
+					printString("Pick a hotel (index for now): ");
 					hotelIndex = scan.nextInt();
 
 					//Total number of rooms
 
-
-
-
+					printString("Name of hotel: ");
+					System.out.print(hotelList.get(hotelIndex).getHotelName());
+					ln();
+					printString("Total number of rooms: ");
+					System.out.print(hotelList.get(hotelIndex).getNumRooms());
+					ln();
+					printString("Estimated earnings for the month: ");
+					System.out.print(hotelList.get(hotelIndex).getTotalEarnings());
+					ln();
 					break;
 
 				case 3:
@@ -101,7 +106,6 @@ public class Driver{
 					int checkOut;
 					String name;
 					int room;
-					int hotelIndex;
 
 					printString("Please input the name: ");
 					name = scan.next();
