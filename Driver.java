@@ -84,7 +84,8 @@ public class Driver{
 					printString("Pick a hotel (index for now)");
 					hotelIndex = scan.nextInt();
 
-					
+					//Total number of rooms
+
 
 
 
