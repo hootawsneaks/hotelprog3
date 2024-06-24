@@ -188,10 +188,15 @@ public class Driver{
 										String reservationInput;
 										int reservationIndex;
 
-										printString("Input a guest's name: ");
-										reservationInput = scan.next();
-										reservationIndex = hotelList.get(hotelIndex).getReservIndex(reservationInput);
-										Management.displayReservation(hotelList.get(hotelIndex).getReservationsList().get(reservationIndex));
+										do{
+											printString("Input a guest's name: ");
+											reservationInput = scan.next();
+											reservationIndex = hotelList.get(hotelIndex).getReservIndex(reservationInput);
+										}while(reservationIndex == -1 || reservationInput.equals("CANCEL"));
+
+										if(reservationIndex != -1){
+											Management.displayReservation(hotelList.get(hotelIndex).getReservationsList().get(reservationIndex));
+										}
 										break;
 									default:
 								}
@@ -361,8 +366,22 @@ public class Driver{
 					printString("Please input the name: ");
 					name = scan.next();
 					ln();
-					printString("Input hotel index: ");
-					hotelIndex = scan.nextInt();
+
+					for(int i = 0; i<hotelList.size(); i++){
+						System.out.println((i + 1) + "." + " " + hotelList.get(i).getHotelName());
+						ln();
+					}
+
+					do{
+						ln();
+						printString("Input the hotel's name: ");
+						hotelSearch = scan.next();
+						hotelIndex = Management.getHotelIndex(hotelSearch, hotelList);
+						if(hotelIndex == -1){
+							printString("Invalid hotel, please input a valid hotel name.");
+							ln();
+						}
+					}while(hotelIndex == -1);
 					ln();
 					printString("Input check in date: ");
 					checkIn = scan.nextInt();
@@ -395,20 +414,5 @@ public class Driver{
     public static void main(String[] args) {
 		ArrayList<Hotel> hotelList = new ArrayList<Hotel>();
 		hotelManage(hotelList);
-
-    	
-
-
-		//hotelList.add(new Hotel("Verdes Suites Manila", 24, 4899.00));
-		//hotelList.add(new Hotel("Verdes Green Manila", 48));
-		//hotelList.add(new Hotel("Verde Grande BGC", 21, 6789.00));
-    	//System.out.println();
-
-
-		// MAKES A HOTEL
-
-		// books a reservation
-
-
     }
 }
