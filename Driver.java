@@ -93,6 +93,12 @@ public class Driver{
 					String hotelSearch;
 					int levelChoice;
 
+					if(hotelList.size() <= 0){
+						printString("No hotels to view! Please create a hotel to use this function. ");
+						ln();
+						break;
+					}
+
 					ln();
 					printString("------------------------");
 					ln();
