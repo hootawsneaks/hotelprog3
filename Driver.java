@@ -252,7 +252,7 @@ public class Driver{
 					System.out.println("3: Remove rooms");
 					System.out.println("4: Update Price");
 					System.out.println("5: Remove Reversation");
-					System.out.println("6: Remove Hotel");
+					System.out.println("6: Remove Currently Selected Hotel");
 					
 					System.out.print("Input: ");
 					input = scan.next();
@@ -314,7 +314,7 @@ public class Driver{
 							}while(valid == false);
 							
 							break;
-							
+						//remove room
 						case "3":
 							System.out.println("Hotel: " + hotelList.get(hotelIndexManage).getHotelName());
 							System.out.println("Rooms:\n");
@@ -335,7 +335,9 @@ public class Driver{
 								}
 								
 								if(valid == true) {
-									hotelList.get(hotelIndexManage).removeRoom(removeRoom);
+									if(hotelList.get(hotelIndexManage).removeRoom(removeRoom) == false) {
+										System.out.println("Cannot remove a booked room");
+									}
 								}
 								else {
 									System.out.println("Invalid room name");
@@ -345,10 +347,72 @@ public class Driver{
 							}while(valid == false);
 							
 							break;
+							
+						case "4":
+							
+							valid = false;
+							float price = 0;
+							do {
+								System.out.println("Hotel: " + hotelList.get(hotelIndexManage).getHotelName());
+								System.out.println("Current Price: " + hotelList.get(hotelIndexManage).getPrice());
+								
+								System.out.print("Input: ");
+								price = scan.nextFloat();
+								
+								if(price < 100) {
+									System.out.println("Invalid price\n");
+								}
+								else if(hotelList.get(hotelIndexManage).changePrice(price) == false) {
+									System.out.println("There are rooms currently booked, cannot configure price");
+								}
+								else
+								{
+									valid = true;
+								}
+								
+							}while(valid == false);
+							
+							
+							break;
+							
+						case "5":
+							
+							valid = false;
+							String guest;
+							do {
+								System.out.println("Hotel: " + hotelList.get(hotelIndexManage).getHotelName());
+								printString("Guest List\n");
+								for(int i = 0; i < hotelList.get(hotelIndexManage).getReservationsList().size(); i++) {
+									System.out.println("- " + hotelList.get(hotelIndexManage).getReservationsList().get(i).getGuestName());
+								}
+								
+								printString("Input: ");
+								guest = scan.next();
+								
+								for(int i = 0; i < hotelList.get(hotelIndexManage).getReservationsList().size(); i++) {
+									if(hotelList.get(hotelIndexManage).getReservationsList().get(i).getGuestName().equals(guest)) {
+										valid = true;
+									}
+								}
+								
+								if(valid == false) {
+									System.out.println("Input valid guest name");
+								}
+								else {
+									hotelList.get(hotelIndexManage).removeReservation(guest);
+								}
+								
+							}while(valid == false);
+							break;
 									
+						case "6":
+							hotelList.remove(hotelIndexManage);
+							break;
 					}
 					
 					}
+					
+				
 					
 					else
 					{
@@ -366,22 +430,8 @@ public class Driver{
 					printString("Please input the name: ");
 					name = scan.next();
 					ln();
-
-					for(int i = 0; i<hotelList.size(); i++){
-						System.out.println((i + 1) + "." + " " + hotelList.get(i).getHotelName());
-						ln();
-					}
-
-					do{
-						ln();
-						printString("Input the hotel's name: ");
-						hotelSearch = scan.next();
-						hotelIndex = Management.getHotelIndex(hotelSearch, hotelList);
-						if(hotelIndex == -1){
-							printString("Invalid hotel, please input a valid hotel name.");
-							ln();
-						}
-					}while(hotelIndex == -1);
+					printString("Input hotel index: ");
+					hotelIndex = scan.nextInt();
 					ln();
 					printString("Input check in date: ");
 					checkIn = scan.nextInt();
@@ -414,5 +464,20 @@ public class Driver{
     public static void main(String[] args) {
 		ArrayList<Hotel> hotelList = new ArrayList<Hotel>();
 		hotelManage(hotelList);
+
+    	
+
+
+		//hotelList.add(new Hotel("Verdes Suites Manila", 24, 4899.00));
+		//hotelList.add(new Hotel("Verdes Green Manila", 48));
+		//hotelList.add(new Hotel("Verde Grande BGC", 21, 6789.00));
+    	//System.out.println();
+
+
+		// MAKES A HOTEL
+
+		// books a reservation
+
+
     }
 }
