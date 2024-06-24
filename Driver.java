@@ -162,12 +162,25 @@ public class Driver{
 									case 2:
 										int roomInput;
 										int roomIndex;
+
+										hotelList.get(hotelIndex).showRoomList();
+										ln();
+
 										do{
 											printString("Input a valid room greater than zero: ");
 											roomInput = scan.nextInt();
-										}while(roomInput<0) // error check
-
-										roomIndex = hotelList.get(hotelIndex).getRoomIndex(roomInput);
+											roomIndex = hotelList.get(hotelIndex).getRoomIndex(roomInput);
+											if(roomInput <= 0){
+												printString("Please input a valid room.");
+												ln();
+											}
+											if(roomIndex <= -1){
+												printString("Room inputted does not exist, please try again.");
+												ln();
+											}
+											
+										}while(roomInput<0 || roomIndex == -1); // error check
+										
 										Management.displayRoom(hotelList.get(hotelIndex).getRoomsList().get(roomIndex));
 
 										break;
