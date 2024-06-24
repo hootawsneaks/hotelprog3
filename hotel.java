@@ -181,13 +181,7 @@ public class Hotel{
     }
    
     //changes hotel name if no other same name
-    public boolean changeHotelName(String newName, ArrayList<Hotel> hotels) {
-    	for(int i = 0; i < hotels.size(); i++) {
-    		if(hotels.get(i).getHotelName().equals(newName)) {
-    			return false;
-    		}
-    	}
-    	
+    public boolean changeHotelName(String newName) {
     	this.hotelName = newName;
     	return true;
     }
@@ -196,7 +190,7 @@ public class Hotel{
     public void showRoomList() {
     	int n = 1;
     	for(int i = 0; i < this.roomsList.size(); i++) {
-    		System.out.format("%5s" , this.roomsList.get(i).getRoomName());
+    		System.out.format("%8s" , this.roomsList.get(i).getRoomName());
     		n++;
     		
     		if(n % 6 == 0) {
@@ -207,7 +201,7 @@ public class Hotel{
     		
     	}
 
-    	
+    	System.out.println();
     }
     
     //gives index of a room given its roomNum

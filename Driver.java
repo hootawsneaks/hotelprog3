@@ -209,9 +209,148 @@ public class Driver{
 					break; // case break
 
 				case 3:
-					// manage hotel : save for last
-
+					if(hotelList.size() != 0) {
+					String input;
+					int hotelIndexManage = -1;
+					do {
+					printString("Choose Hotel to Manage:\n");
+					if(hotelList.size() != 0) {
+						for(int i = 0; i < hotelList.size(); i++) {
+							System.out.println("- " + hotelList.get(i).getHotelName());
+						}
+					}
+					else {
+						printString("No hotels exist currently\n");
+					}
+					
+					ln();
+					System.out.print("Input: ");
+					input = scan.next();
+					
+					//loop to get hotel index
+					for(int i = 0; i < hotelList.size(); i++) {
+						if(hotelList.get(i).getHotelName().equals(input)) {
+							hotelIndexManage = i;
+							break;
+						}
+					}
+					
+					if(hotelIndexManage == -1) {
+						System.out.println("Invalid Hotel Name");
+					}
+					
+					} while(hotelIndexManage == -1);
+					
+					System.out.println("Hotel: " + hotelList.get(hotelIndexManage).getHotelName() + "\n");
+					System.out.println("1: Change Hotel Name");
+					System.out.println("2: Add rooms");
+					System.out.println("3: Remove rooms");
+					System.out.println("4: Update Price");
+					System.out.println("5: Remove Reversation");
+					System.out.println("6: Remove Hotel");
+					
+					System.out.print("Input: ");
+					input = scan.next();
+					
+					boolean valid = false;//for loops and shiz
+					
+					switch(input) {
+						case "1":
+							
+							do{
+								valid = true;
+								System.out.print("Input new hotel name: ");
+								input = scan.next();
+								
+								for(int i = 0; i < hotelList.size(); i++) {
+									if(input.equals(hotelList.get(i).getHotelName()) && i != hotelIndexManage) {
+										valid = false;
+									}
+								}
+								
+								if(valid == false) {
+									System.out.println("Hotel Name is taken");
+								}
+								
+							}while(valid == false);
+							
+							hotelList.get(hotelIndexManage).changeHotelName(input);
+							
+							break;
+							
+						case "2":
+							if(hotelList.get(hotelIndexManage).getRoomsList().size() == 50) {
+								System.out.println("Hotel is at max rooms");
+								break;
+							}
+							
+							int addRooms;
+							
+							valid = false;
+							
+							do {
+								System.out.println("Hotel: " + hotelList.get(hotelIndexManage).getHotelName());
+								System.out.println("Current number of rooms: " + hotelList.get(hotelIndexManage).getRoomsList().size());
+								System.out.print("Input number of rooms to be added:");
+								addRooms = scan.nextInt();
+								
+								if(addRooms + hotelList.size() > 50 && addRooms > 0){
+									System.out.println("Number of rooms cannot exceed 50\n");
+								}
+								else if(addRooms < 0) {
+									System.out.println("Input must be a positive number\n");
+								}
+								else {
+									hotelList.get(hotelIndexManage).addRoom(addRooms);
+									valid = true;
+								}
+								
+								
+							}while(valid == false);
+							
+							break;
+							
+						case "3":
+							System.out.println("Hotel: " + hotelList.get(hotelIndexManage).getHotelName());
+							System.out.println("Rooms:\n");
+				
+							hotelList.get(hotelIndexManage).showRoomList();
+							
+							int removeRoom = -1;
+							
+							valid = false;
+							do {
+								System.out.print("Input Room Number to be removed: ");
+								removeRoom = scan.nextInt();
+								
+								for(int i = 0; i < hotelList.get(hotelIndexManage).getRoomsList().size(); i++) {
+									if(removeRoom == hotelList.get(hotelIndexManage).getRoomsList().get(i).getRoomName()) {
+										valid = true;
+									}
+								}
+								
+								if(valid == true) {
+									hotelList.get(hotelIndexManage).removeRoom(removeRoom);
+								}
+								else {
+									System.out.println("Invalid room name");
+								}
+								
+								
+							}while(valid == false);
+							
+							break;
+									
+					}
+					
+					}
+					
+					else
+					{
+						System.out.println("No hotels exist currently");
+					}
 					break;
+
 				case 4:
 					// books a room for a guest
 					int checkIn;
