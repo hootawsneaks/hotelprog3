@@ -15,6 +15,8 @@ public class Driver{
 		Scanner scan = new Scanner(System.in);
 		int choiceInput;
 		do{
+			printString("------------------------------");
+			ln();
 			printString("Select Choice: ");
 			ln();
 			printString("1: Add Hotel");
@@ -46,7 +48,11 @@ public class Driver{
 							System.out.println("");
 							System.out.print("Input number of rooms: ");
 							intInput = scan.nextInt();
-						} while(intInput<1);
+							if(intInput<1 || intInput>50){
+								printString("Room input is invalid, please try again.");
+								ln();
+							}
+						} while(intInput<1 || intInput>50);
 
 						do{
 							System.out.println("");
@@ -54,7 +60,11 @@ public class Driver{
 							floatInput = scan.nextFloat();
 							if(floatInput == 0)
 								floatInput = 1299.00f;
-						}while(floatInput<0);
+							if(floatInput < 100){
+								printString("Invalid input, minimum is 100, please try again.");
+								ln();
+							}
+						}while(floatInput<100);
 
 						if(hotelList.add(new Hotel(stringInput, intInput, floatInput))) // arrayList will return 1 if successfully changed.
 							System.out.println("Hotel added!");
@@ -65,7 +75,7 @@ public class Driver{
 					}while(!stringInput.equals("EXIT"));
 					break;
 
-				case 2:
+				case 2: // view hotel
 					/*In this feature, the user can view the current information found in a selected hotel. This would
 					include high-level information of the hotel and low-level information based on what the user would
 					like to see. See the following for more information:
@@ -78,28 +88,117 @@ public class Driver{
 					iii. Information about a selected reservation, such as the guest information, room
 					information, check-in and -out dates, the total price for the booking, and the
 					breakdown of the price per night*/
-					int hotelIndex;
 
-					printString("Pick a hotel (index for now): ");
-					hotelIndex = scan.nextInt();
+					int hotelIndex;
+					String hotelSearch;
+					int levelChoice;
+
+					ln();
+					printString("------------------------");
+					ln();
+					// show a list of all hotels
+					for(int i = 0; i<hotelList.size(); i++){
+						System.out.println((i + 1) + "." + " " + hotelList.get(i).getHotelName());
+						ln();
+					}
+
+					do{
+						ln();
+						printString("Input the hotel's name: ");
+						hotelSearch = scan.next();
+						hotelIndex = Management.getHotelIndex(hotelSearch, hotelList);
+					}while(hotelIndex == -1);
+
 
 					//Total number of rooms
 
-					printString("Name of hotel: ");
-					System.out.print(hotelList.get(hotelIndex).getHotelName());
+					printString("Would you like to view its high level (1) or low level info (2)? input 0 to exit: ");
 					ln();
-					printString("Total number of rooms: ");
-					System.out.print(hotelList.get(hotelIndex).getNumRooms());
-					ln();
-					printString("Estimated earnings for the month: ");
-					System.out.print(hotelList.get(hotelIndex).getTotalEarnings());
-					ln();
-					break;
+					levelChoice = scan.nextInt();
+
+					switch(levelChoice){
+
+							case 0:
+								break;
+
+							case 1:
+							// high level
+
+							printString("Name of hotel: ");
+							System.out.print(hotelList.get(hotelIndex).getHotelName());
+							ln();
+							printString("Total number of rooms: ");
+							System.out.print(hotelList.get(hotelIndex).getNumRooms());
+							ln();
+							printString("Estimated earnings for the month: ");
+							System.out.print(hotelList.get(hotelIndex).getTotalEarnings());
+							ln();
+
+								break; // case break
+
+							case 2:
+								// low level
+								int lowLevelChoice;
+
+								printString("What information would you like to view?");
+								ln();
+								printString("1. Total number of available rooms and booked rooms for a specified date.");
+								ln();
+								printString("2. Information about a selected room. (");
+								printString("room's name, price per night, and availability across the entire month)");
+								ln();
+								printString("3. Information about a selected reservation. ");
+								ln();
+
+								lowLevelChoice = scan.nextInt();
+								switch(lowLevelChoice){
+									case 1:
+										int date;
+										printString("Input a valid specific date: ");
+										date = scan.nextInt();
+										System.out.print("Total number of available rooms for " + date + ": ");
+										System.out.print(hotelList.get(hotelIndex).getRoomAvailability(date));
+										break;
+									case 2:
+										int roomInput;
+										int roomIndex;
+										do{
+											printString("Input a valid room greater than zero: ");
+											roomInput = scan.nextInt();
+										}while(roomInput<0) // error check
+
+										roomIndex = hotelList.get(hotelIndex).getRoomIndex(roomInput);
+										Management.displayRoom(hotelList.get(hotelIndex).getRoomsList().get(roomIndex));
+
+										break;
+									case 3:
+										String reservationInput;
+										int reservationIndex;
+
+										printString("Input a guest's name: ");
+										reservationInput = scan.next();
+										reservationIndex = hotelList.get(hotelIndex).getReservIndex(reservationInput);
+										Management.displayReservation(hotelList.get(hotelIndex).getReservationsList().get(reservationIndex));
+										break;
+									default:
+								}
+
+								break; // case break
+
+
+							default:
+								printString("Invalid Input. please try again.");
+					}
+
+
+
+
+					break; // case break
 
 				case 3:
 					// manage hotel : save for last
-					break;
 
+					break;
 				case 4:
 					// books a room for a guest
 					int checkIn;
