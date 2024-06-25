@@ -14,10 +14,13 @@ public class Driver{
 	public static void hotelManage(ArrayList<Hotel> hotelList){
 		Scanner scan = new Scanner(System.in);
 		int choiceInput;
+		boolean quit = false;
 		do{
 			printString("------------------------------");
 			ln();
 			printString("Select Choice: ");
+			ln();
+			printString("0: Quit");
 			ln();
 			printString("1: Add Hotel");
 			ln();
@@ -27,18 +30,32 @@ public class Driver{
 			ln();
 			printString("4: Simulate Booking");
 			ln();
+			
+			System.out.print("\nInput number of choice: ");
+			
 			choiceInput = scan.nextInt();
 			switch (choiceInput){
 				case 0:
+					quit = true;
+					/*
+					System.out.print("\033[H\033[2J");  
+					System.out.flush();  
+					*/
+					Management.out();
+					System.out.println("Application closed");
 					break;
 				case 1:
 					// adds a hotel
+					Management.out();
 					String stringInput;
+					/*
 					do
 					{
+					*/
 						int intInput;
 						float floatInput;
-						System.out.print("Create Hotel: ");
+						System.out.println("|Hotel creation|\n");
+						System.out.print("Input Hotel Name: ");
 						stringInput = scan.next();
 						if(stringInput.equals("EXIT")){
 							break;
@@ -66,13 +83,15 @@ public class Driver{
 							}
 						}while(floatInput<100);
 
-						if(hotelList.add(new Hotel(stringInput, intInput, floatInput))) // arrayList will return 1 if successfully changed.
+						if(hotelList.add(new Hotel(stringInput, intInput, floatInput)))// arrayList will return 1 if successfully changed.
+							Management.out();
 							System.out.println("Hotel added!");
 						System.out.println("");
 
-						System.out.println("--------------------");
-
+						//System.out.println("--------------------");
+						/*
 					}while(!stringInput.equals("EXIT"));
+					*/
 					break;
 
 				case 2: // view hotel
@@ -88,7 +107,9 @@ public class Driver{
 					iii. Information about a selected reservation, such as the guest information, room
 					information, check-in and -out dates, the total price for the booking, and the
 					breakdown of the price per night*/
-
+					Management.out();
+					if(hotelList.size() != 0) {
+					
 					int hotelIndex;
 					String hotelSearch;
 					int levelChoice;
@@ -111,14 +132,21 @@ public class Driver{
 
 
 					//Total number of rooms
-
-					printString("Would you like to view its high level (1) or low level info (2)? input 0 to exit: ");
+					boolean exit = false;
+					
+					do {
+					System.out.println("|Hotel "+ hotelList.get(hotelIndex).getHotelName() + "|");
+					printString("Would you like to view : \n(1) High Level info\n(2) Low Level info\n(0) Exit");
 					ln();
+					
+					printString("\nInput: ");
 					levelChoice = scan.nextInt();
 
 					switch(levelChoice){
 
 							case 0:
+								
+								exit = true;
 								break;
 
 							case 1:
@@ -133,11 +161,13 @@ public class Driver{
 							printString("Estimated earnings for the month: ");
 							System.out.print(hotelList.get(hotelIndex).getTotalEarnings());
 							ln();
+							ln();
 
 								break; // case break
 
 							case 2:
 								// low level
+								Management.out();
 								int lowLevelChoice;
 
 								printString("What information would you like to view?");
@@ -149,25 +179,38 @@ public class Driver{
 								ln();
 								printString("3. Information about a selected reservation. ");
 								ln();
-
+								
+								printString("\nInput: ");
 								lowLevelChoice = scan.nextInt();
 								switch(lowLevelChoice){
 									case 1:
 										int date;
-										printString("Input a valid specific date: ");
-										date = scan.nextInt();
+										boolean open = false;
+										do {
+											open = true;
+											printString("Input a valid specific date: ");
+											date = scan.nextInt();
+											if(date < 1 || date > 30) {
+												System.out.println("Invalid Date");
+												open = false;
+											}
+										}while(open == false);
+										
 										System.out.print("Total number of available rooms for " + date + ": ");
-										System.out.print(hotelList.get(hotelIndex).getRoomAvailability(date));
+										System.out.println(hotelList.get(hotelIndex).getRoomAvailability(date));
+										ln();
 										break;
 									case 2:
 										int roomInput;
 										int roomIndex;
-
+										
+										
+										System.out.println("Rooms List:");
 										hotelList.get(hotelIndex).showRoomList();
 										ln();
 
 										do{
-											printString("Input a valid room greater than zero: ");
+											printString("Input a valid room number from the list: ");
 											roomInput = scan.nextInt();
 											roomIndex = hotelList.get(hotelIndex).getRoomIndex(roomInput);
 											if(roomInput <= 0){
@@ -185,6 +228,12 @@ public class Driver{
 
 										break;
 									case 3:
+										if(hotelList.get(hotelIndex).getReservationsList().size() != 0) {
+										
+										System.out.println("Guest List:");
+										for(int i = 0; i < hotelList.get(hotelIndex).getReservationsList().size(); i++) {
+											System.out.println("- " + hotelList.get(hotelIndex).getReservationsList().get(i).getGuestName());
+										}
 										String reservationInput;
 										int reservationIndex;
 
@@ -197,7 +246,12 @@ public class Driver{
 										if(reservationIndex != -1){
 											Management.displayReservation(hotelList.get(hotelIndex).getReservationsList().get(reservationIndex));
 										}
+										}
+										else {
+											System.out.println("No Reservations currently");
+										}
 										break;
+										
 									default:
 								}
 
@@ -207,10 +261,14 @@ public class Driver{
 							default:
 								printString("Invalid Input. please try again.");
 					}
+					}while(exit == false);
 
 
 
-
+					}
+					else {
+						System.out.println("No hotels Exist Currently");
+					}
 					break; // case break
 
 				case 3:
@@ -422,41 +480,96 @@ public class Driver{
 
 				case 4:
 					// books a room for a guest
+					if(hotelList.size() != 0) {
 					int checkIn;
 					int checkOut;
 					String name;
 					int room;
-
-					printString("Please input the name: ");
+					int hotelIndexReserve = -1;
+					boolean goods = false;
+					boolean available = false;
+					System.out.println("|Booking|");
+					
+					printString("Please Input Guest Name: ");
 					name = scan.next();
+		
+					
+					do {
+					printString("\nWhat hotel will u book into: \n");
+					for(int i = 0; i < hotelList.size(); i++) {
+						System.out.println("- " + hotelList.get(i).getHotelName());
+					}
+					
+					System.out.print("Input: ");
+					name = scan.next();
+					for(int i = 0; i < hotelList.size(); i++) {
+						if(name.equals(hotelList.get(i).getHotelName())) {
+							goods = true;
+							hotelIndexReserve = i;
+						}
+					}
+					if(goods == false) {
+						System.out.println("Hotel Does not exist");
+					}
+					
+					}while(goods == false);
+					
 					ln();
-					printString("Input hotel index: ");
-					hotelIndex = scan.nextInt();
+					
+					
+					do {
+						goods = false;
+					do {
+						goods = true;
+						printString("Input check in date: ");
+						System.out.println("Invalid Date");
+						checkIn = scan.nextInt();
+						
+						if(checkIn > 30 || checkIn < 1) {
+							goods = false;
+						}
+					}while(goods == false);
+					
+					
+					do {
+						goods = true;
+						printString("Input check out date: ");
+						checkOut = scan.nextInt();
+						
+						if(checkOut > 31 || checkOut < 2) {
+							System.out.println("Invalid Date");
+							goods = false;
+						}
+						
+					}while(goods == false);
 					ln();
-					printString("Input check in date: ");
-					checkIn = scan.nextInt();
+					System.out.println("Rooms List: ");
+					hotelList.get(hotelIndexReserve).showRoomList();
 					ln();
-					printString("Input check out date: ");
-					checkOut = scan.nextInt();
-					ln();
-					printString("Input room number: ");
+					printString("\nInput room of choice: ");
 					room = scan.nextInt();
 					ln();
 
-					if(hotelList.get(hotelIndex).bookReservation(name, checkIn, checkOut, room)){
+					if(hotelList.get(hotelIndexReserve).bookReservation(name, checkIn, checkOut, room)){
 						printString("Booked Successfully!");
+						available = true;
 						ln();
 					}
 					else{
 						printString("Booking Failed Successfully!");
 						ln();
 					}
-
+					}while(available == false);
+					}
+					else {
+						System.out.println("No hotels exist currently");
+					}
 					break;
 				default:
-					System.out.println("Error, not in choices.");
+					System.out.println("Error, invalid input.");
 			}
-		}while(choiceInput!=0);
+		}while(quit == false);
+		
 	}
 
 

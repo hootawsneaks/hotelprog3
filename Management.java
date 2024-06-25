@@ -36,6 +36,13 @@ public class Management {
 	    	}
 	    	return index;
 	    }
+	 
+	 public static void out() {
+		
+			    System.out.print("\033[H\033[2J");  
+			    System.out.flush();  
+			
+	 }
 	///print hotel info
 	
 	
