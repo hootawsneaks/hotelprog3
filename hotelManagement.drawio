@@ -1,0 +1,163 @@
+<mxfile host="app.diagrams.net" modified="2024-06-25T09:21:43.442Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36" etag="03XNWcdqEw2MC14jKMJu" version="24.4.9" type="device">
+  <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
+    <mxGraphModel dx="1644" dy="1008" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--0" value="Hotel" style="swimlane;fontStyle=2;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry y="90" width="480" height="600" as="geometry">
+            <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--1" value="- hotelName: String" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zkfFHV4jXpPFQw0GAbJ--0" vertex="1">
+          <mxGeometry y="26" width="480" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--2" value="- numRooms: int" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="zkfFHV4jXpPFQw0GAbJ--0" vertex="1">
+          <mxGeometry y="52" width="480" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--3" value="- price: float" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" parent="zkfFHV4jXpPFQw0GAbJ--0" vertex="1">
+          <mxGeometry y="78" width="480" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-0" value="- reservationList: Reservation[]" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="104" width="480" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-1" value="- roomsList: Room[]" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="130" width="480" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="zkfFHV4jXpPFQw0GAbJ--4" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="zkfFHV4jXpPFQw0GAbJ--0" vertex="1">
+          <mxGeometry y="156" width="480" height="34" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-3" value="+ Hotel(String hotelName, int numRooms, float price)" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="190" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-2" value="+ createRooms: void" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="210" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-4" value="+ bookReservation(String guestName, int checkIn, int checkOut, int roomNum): boolean" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="230" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-5" value="+ removeReservation(String guestName): boolean" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="250" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-6" value="+ removeReservation(int roomNum, int checkIn, int checkOut): boolean" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="270" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-7" value="+ addRoom(int numRooms): boolean" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="290" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-8" value="+ removeRoom(int roomNum): boolean" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="310" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-9" value="+ changeHotelName(String newName): boolean" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="330" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-10" value="+ showRoomList(): void" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="350" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-11" value="+ getRoomIndex(int roomNum): int" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="370" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-12" value="+ getReservIndex(String guest): int" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="390" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-13" value="+ getRoomAvailability(int date): int[]" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="410" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-14" value="+ getRoomAvailability(int checkIn, int checkOut): int[]" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="430" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-15" value="+ changePrice(float price): boolean" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="450" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-16" value="+ getTotalEarnings(): float" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="470" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-17" value="+ getRoomsList(): Room[]" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="490" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-18" value="+ getReservationsList(): Reservation[]" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="510" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-19" value="+ getHotelName(): String" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="530" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-20" value="+ getNumRooms(): int" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="550" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-21" value="+ getPrice(): int" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
+          <mxGeometry y="570" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-22" value="Management" style="swimlane;fontStyle=2;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="610" y="80" width="480" height="210" as="geometry">
+            <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-28" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="S5hGZ1DvwUxr_n9HNrOd-22">
+          <mxGeometry y="26" width="480" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-39" value="+ addHotel(Hotel hotel): void" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S5hGZ1DvwUxr_n9HNrOd-22">
+          <mxGeometry y="78" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-40" value="+ removeHotel(Hotel hotel): void" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S5hGZ1DvwUxr_n9HNrOd-22">
+          <mxGeometry y="98" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-41" value="+ displayReservation(Reservation reservation): void" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S5hGZ1DvwUxr_n9HNrOd-22">
+          <mxGeometry y="118" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-42" value="+ displayRoom(Room room): void" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S5hGZ1DvwUxr_n9HNrOd-22">
+          <mxGeometry y="138" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-45" value="+ getHotelIndex(String name, Hotel hotels[]): int" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S5hGZ1DvwUxr_n9HNrOd-22">
+          <mxGeometry y="158" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-46" value="+ out(): void" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S5hGZ1DvwUxr_n9HNrOd-22">
+          <mxGeometry y="178" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-49" value="Hotel" style="swimlane;fontStyle=2;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="610" y="320" width="480" height="330" as="geometry">
+            <mxRectangle x="230" y="140" width="160" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-50" value="- guestName: String" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="S5hGZ1DvwUxr_n9HNrOd-49">
+          <mxGeometry y="26" width="480" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-51" value="- checkIn: int" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S5hGZ1DvwUxr_n9HNrOd-49">
+          <mxGeometry y="52" width="480" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-52" value="- checkOut: int" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S5hGZ1DvwUxr_n9HNrOd-49">
+          <mxGeometry y="78" width="480" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-53" value="- room: Room" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S5hGZ1DvwUxr_n9HNrOd-49">
+          <mxGeometry y="104" width="480" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-55" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="S5hGZ1DvwUxr_n9HNrOd-49">
+          <mxGeometry y="130" width="480" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-56" value="+ Reservation(String guestName, int checkIn, int checkOut, Room room)" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S5hGZ1DvwUxr_n9HNrOd-49">
+          <mxGeometry y="154" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-57" value="+ getDaysStay(): int[]" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S5hGZ1DvwUxr_n9HNrOd-49">
+          <mxGeometry y="174" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-58" value="+ getTotalPay(): float" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S5hGZ1DvwUxr_n9HNrOd-49">
+          <mxGeometry y="194" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-59" value="+ setRoomInfo(Room room): void" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S5hGZ1DvwUxr_n9HNrOd-49">
+          <mxGeometry y="214" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-60" value="+ getGuestName(): String" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S5hGZ1DvwUxr_n9HNrOd-49">
+          <mxGeometry y="234" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-61" value="+ getCheckIn(): int" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S5hGZ1DvwUxr_n9HNrOd-49">
+          <mxGeometry y="254" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-71" value="+ getCheckOut(): int" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S5hGZ1DvwUxr_n9HNrOd-49">
+          <mxGeometry y="274" width="480" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="S5hGZ1DvwUxr_n9HNrOd-76" value="+ getRoomInfo(): Room" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rounded=0;shadow=0;html=0;" vertex="1" parent="S5hGZ1DvwUxr_n9HNrOd-49">
+          <mxGeometry y="294" width="480" height="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
