@@ -45,11 +45,8 @@ public class Hotel{
 	 *  The check in date must always be earlier than the check out date.
 	 * 
 	 *  @param guestName a string that signifies the one reserving the room.
-	 * 
 	 *  @param checkIn an integer from 1-30 that signifies the day the guest has checked in.
-	 * 
 	 *  @param checkOut an integer from 2-31 that signifies the day the guest will check out.
-	 * 
 	 *  @param roomNum an integer that signifies the chosen room that will be reserved.
 	 * 
 	 *  @return true if booked successfully, false if otherwise.
