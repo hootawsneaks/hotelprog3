@@ -59,10 +59,10 @@ public class Driver{
 						float floatInput;
 						System.out.println("|Hotel creation|\n");
 						boolean taken = true;
+						buffer= scan.nextLine();
 						do{
 							taken = false;
 						System.out.print("Input Hotel Name: ");
-						buffer= scan.nextLine();
 						stringInput = scan.nextLine();
 						for(int i = 0; i < hotelList.size(); i++){
 							if(stringInput.equals(hotelList.get(i).getHotelName())){
@@ -71,6 +71,8 @@ public class Driver{
 
 							if(taken == true){
 								System.out.println("Hotel name taken");
+								System.out.println("-press any key to continue-");
+								buffer = scan.nextLine();
 							}
 						}
 						}while(taken == true);
@@ -388,11 +390,11 @@ public class Driver{
 							Management.out();
 							break;
 						case "1":
-							
+						buffer = scan.nextLine();
 							do{
 								valid = true;
 								System.out.print("\nInput new hotel name: ");
-								buffer = scan.nextLine();
+								//buffer = scan.nextLine();
 								input = scan.nextLine();
 								
 								for(int i = 0; i < hotelList.size(); i++) {
