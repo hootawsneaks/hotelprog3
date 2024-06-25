@@ -513,8 +513,10 @@ public class Driver{
 									System.out.println("There are rooms currently booked, cannot configure price");
 								}
 									*/
+								
 								else
 								{
+									hotelList.get(hotelIndexManage).changePrice(price);
 									valid = true;
 								}
 								
