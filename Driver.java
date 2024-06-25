@@ -144,7 +144,7 @@ public class Driver{
 					do{
 						ln();
 						printString("Input the hotel's name: ");
-						buffer = scan.nextLine();
+						//buffer = scan.nextLine();
 						hotelSearch = scan.nextLine();
 						hotelIndex = Management.getHotelIndex(hotelSearch, hotelList);
 					}while(hotelIndex == -1);
@@ -345,7 +345,7 @@ public class Driver{
 					
 					ln();
 					System.out.print("Input: ");
-					buffer = scan.nextLine();
+					//buffer = scan.nextLine();
 					input = scan.nextLine();
 					
 					//loop to get hotel index
@@ -392,6 +392,7 @@ public class Driver{
 							do{
 								valid = true;
 								System.out.print("\nInput new hotel name: ");
+								buffer = scan.nextLine();
 								input = scan.nextLine();
 								
 								for(int i = 0; i < hotelList.size(); i++) {
@@ -533,32 +534,36 @@ public class Driver{
 							if(hotelList.get(hotelIndexManage).getReservationsList().size() != 0) {
 							valid = false;
 							String guest;
+							int guestIndex;
 							do {
 								//System.out.println("Hotel: " + hotelList.get(hotelIndexManage).getHotelName());
 								ln();
 								printString("Guest List\n");
 								for(int i = 0; i < hotelList.get(hotelIndexManage).getReservationsList().size(); i++) {
-									System.out.println("- " + hotelList.get(hotelIndexManage).getReservationsList().get(i).getGuestName());
+									System.out.println( i+ ": " + hotelList.get(hotelIndexManage).getReservationsList().get(i).getGuestName());
 								}
 								
-								printString("Input: ");
-								guest = scan.nextLine();
-								
+								printString("Input Guest Index: ");
+								guestIndex = scan.nextInt();
+								/* 
 								for(int i = 0; i < hotelList.get(hotelIndexManage).getReservationsList().size(); i++) {
 									if(hotelList.get(hotelIndexManage).getReservationsList().get(i).getGuestName().equals(guest)) {
 										valid = true;
 									}
 								}
-								
+								*/
+								if(guestIndex >= 0 && guestIndex < hotelList.get(hotelIndexManage).getReservationsList().size()){
+									valid = true;
+								}
 								if(valid == false) {
-									System.out.println("Input valid guest name");
+									System.out.println("Input valid guest Index");
 								}
 								else {
 									System.out.println("Are you sure you want to remove this reservation?");
 										System.out.print("Input (y) yes , (n) no: ");
 										confirmation = scan.next();
 										if(confirmation.equals("y")){
-											hotelList.get(hotelIndexManage).removeReservation(guest);
+											hotelList.get(hotelIndexManage).getReservationsList().remove(guestIndex);
 										}
 								}
 								
