@@ -8,7 +8,9 @@ public class Hotel{
     private ArrayList<Reservation> reservationsList = new ArrayList<Reservation>();
     private ArrayList<Room> roomsList = new ArrayList<Room>();
 
-    
+	/**
+	 * Class constructor for a hotel; hotel name, number of rooms, and price need to be indicated.
+	 */
     public Hotel(String hotelName, int numRooms, float price){
         this.hotelName = hotelName;
         this.numRooms = numRooms;
@@ -26,6 +28,9 @@ public class Hotel{
     }
     */
     // for initialzing the rooms when a hotel is created
+	/**
+	 *  Initializes the rooms when a hotel is created.
+	 */
     public void createRooms(){
         int n = 1;
         for(int i = 0; i < this.numRooms; i++){
@@ -35,6 +40,20 @@ public class Hotel{
     }
     
     //books a reservation makes all its info and books the dates for the chosen room
+	/**
+	 *  Books a reservation via a given name, check in and out date, and a room number.
+	 *  The check in date must always be earlier than the check out date.
+	 * 
+	 *  @param guestName a string that signifies the one reserving the room.
+	 * 
+	 *  @param checkIn an integer from 1-30 that signifies the day the guest has checked in.
+	 * 
+	 *  @param checkOut an integer from 2-31 that signifies the day the guest will check out.
+	 * 
+	 *  @param roomNum an integer that signifies the chosen room that will be reserved.
+	 * 
+	 *  @return true if booked successfully, false if otherwise.
+	 */
     public boolean bookReservation(String guestName, int checkIn, int checkOut, int roomNum) {
     	//bawal checkin last day, bawal checkOut first
     	if(!(checkIn >= 1 && checkIn < 31)) {
@@ -92,6 +111,11 @@ public class Hotel{
     
     //with guest name
     // removes reservation, adjusts dates boooked of room
+	/**
+	 *  Removes a reservation given by a certain guest's name
+	 * 	@param guestName is a string that is within a reservation; used for searching the list.
+	 *  @return true if successfully removed, false if otherwise.
+	 */
     public boolean removeReservation(String guestName) {
     	//int guestIndex;
     	//String roomName;
@@ -140,6 +164,11 @@ public class Hotel{
     */
     
     //numRooms is num of rooms to add
+	/**
+	 * Adds rooms to a hotel depending on the amount wanted if the max rooms have not been reached.
+	 * @param numRooms is an integer, the number of rooms that the user wants to be added.
+	 * @return true if successfully added, false if otherwise.
+	 */
     public boolean addRoom(int numRooms) {
     	if(this.roomsList.size() + numRooms > 50 || numRooms < 1) {
     		return false;
@@ -154,6 +183,11 @@ public class Hotel{
     }
     
     //removes a room if that room no reservation
+	/**
+	 * Removes rooms that don't have a reservation, given an integer.
+	 * @param roomNum is an integer; the amount of rooms that the user wants to be removed.
+	 * @return true if succesfully removed, false if otherwise.
+	 */
     public boolean removeRoom(int roomNum) {
     	
     	int roomIndex = this.getRoomIndex(roomNum);
@@ -181,12 +215,20 @@ public class Hotel{
     }
    
     //changes hotel name if no other same name
+	/**
+	 * Changes the name of the hotel name.
+	 * @param newName is a string that signifies the new name of the hotel.
+	 * @return true
+	 */
     public boolean changeHotelName(String newName) {
     	this.hotelName = newName;
     	return true;
     }
     
     //list of rooms in existence
+	/**
+	 * Shows all the name of the rooms that exist within a hotel.
+	 */
     public void showRoomList() {
     	int n = 1;
     	for(int i = 0; i < this.roomsList.size(); i++) {
@@ -205,6 +247,11 @@ public class Hotel{
     }
     
     //gives index of a room given its roomNum
+	/**
+	 * returns the index of a room, given a room number.
+	 * @param roomNum is an integer; the number of the room that the user wants to find the index of.
+	 * @return the index of the room if successful, -1 if otherwise
+	 */
     public int getRoomIndex(int roomNum) {
     	int roomIndex = -1;
     	for(int i = 0; i < this.roomsList.size(); i++) {
@@ -217,6 +264,11 @@ public class Hotel{
     }
     
     //gives index of a reservation give the guest name
+	/**
+	 * returns the index of a reservation, given the guest's name.
+	 * @param guest is a string, which is the guest's name in the reservation.
+	 * @return the index of the reservation if successful, -1 if otherwise.
+	 */
     public int getReservIndex(String guest) {
     	int index = -1;
     	for(int i = 0; i < this.reservationsList.size(); i++) {
@@ -229,6 +281,11 @@ public class Hotel{
     }
     
     //returns list of rooms goods on a single date
+	/**
+	 * Returns the list of rooms that aren't booked, given a single date.
+	 * @param date is an integer, the day in where you want to find all free rooms.
+	 * @return a list of integers, they signify the rooms that are not booked in that day.
+	 */
     public ArrayList<Integer> getRoomAvailability(int date){
     	ArrayList<Integer> rooms = new ArrayList<Integer>();//rooms available on this date
     	boolean present;
@@ -249,6 +306,12 @@ public class Hotel{
     }
      
     //returns  list of rooms good from dates checkin to checkut - 1
+	/**
+	 * Returns the list of rooms that aren't booked, within a span of time greater than a 1 day.
+	 * @param checkIn is an integer; the start of the timespan
+	 * @param checkOut is an integer; the end of the timespan
+	 * @return a list of integers, they signify the rooms that are not booked in that day.
+	 */
     public ArrayList<Integer> getRoomAvailability(int checkIn, int checkOut){
     	ArrayList<Integer> rooms = new ArrayList<Integer>();//rooms available on this date
     	int count = 0;
@@ -278,6 +341,11 @@ public class Hotel{
     }
     
     //change room if no reservations across the whole hotel
+	/**
+	 * Changes the price of staying in a room in the hotel, depending on the new given price.
+	 * @param price is the new price that the user wants it changed to.
+	 * @return true if successful, false if unsuccessful. The minimum price is 100.
+	 */
     public boolean changePrice(float price) {
     	if(this.reservationsList.size() != 0 ) {
     		return false;
@@ -292,7 +360,11 @@ public class Hotel{
     	
     	return true;
     }
-    
+
+    /**
+	 * Returns the total expected earnings of a hotel.
+	 * @return a float, the sum of every reservation in a hotel.
+	 */
     public float getTotalEarnings() {
     	float sum = 0;
     	for(int  i = 0; i < this.reservationsList.size(); i++) {
@@ -302,22 +374,42 @@ public class Hotel{
     	return sum;
     }
     
+	/**
+	 * Returns the ArrayList of rooms, where all the rooms are stored within a hotel.
+	 * @return the ArrayList of rooms
+	 */
     public ArrayList<Room> getRoomsList() {
     	return roomsList;
     }
     
+	/**
+	 * Returns the ArrayList of reservations, where all reservations are stored within a hotel.
+	 * @return the ArrayList of reservations.
+	 */
     public ArrayList<Reservation> getReservationsList() {
     	return reservationsList;
     }
     
+	/**
+	 * Returns the name of the hotel.
+	 * @return a string, the name of the hotel.
+	 */
     public String getHotelName() {
     	return this.hotelName;
     }
     
+	/**
+	 * Returns the number of rooms in a hotel.
+	 * @return an integer, the number of rooms in the hotel.
+	 */
     public int getNumRooms() {
     	return this.numRooms;
     }
     
+	/**
+	 * Returns the price of the rooms in the hotel.
+	 * @return a float value; the price of the rooms in the hotel.
+	 */
     public float getPrice() {
     	return this.price;
     }
