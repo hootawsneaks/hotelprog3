@@ -269,26 +269,32 @@ public class Driver{
 										ln();
 										System.out.println("Guest List:");
 										for(int i = 0; i < hotelList.get(hotelIndex).getReservationsList().size(); i++) {
-											System.out.println("- " + hotelList.get(hotelIndex).getReservationsList().get(i).getGuestName());
+											System.out.println(i+ ": " + hotelList.get(hotelIndex).getReservationsList().get(i).getGuestName());
 										}
-										String reservationInput;
+										int reservationInput;
 										int reservationIndex;
-
+										boolean isGood = false;
 										do{
 											ln();
-											printString("Input a guest's name: ");
-											reservationInput = scan.next();
-											reservationIndex = hotelList.get(hotelIndex).getReservIndex(reservationInput);
-										}while(reservationIndex == -1 || reservationInput.equals("CANCEL"));
-
+											printString("Input a guest Index: ");
+											reservationInput = scan.nextInt();
+											if(reservationInput >= 0 && reservationInput < hotelList.get(hotelIndex).getReservationsList().size()){
+												isGood = true;
+												ln();
+												Management.displayReservation(hotelList.get(hotelIndex).getReservationsList().get(reservationInput));
+											}
+											//reservationIndex = hotelList.get(hotelIndex).getReservIndex(reservationInput);
+										}while(isGood == false);
+										/* 
 										if(reservationIndex != -1){
 											Management.displayReservation(hotelList.get(hotelIndex).getReservationsList().get(reservationIndex));
 											ln();
+											 */
 										System.out.println("-Press enter to continue-");
 										buffer = scan.nextLine();
 										buffer = scan.nextLine();
 										Management.out();
-										}
+										
 										}
 										else {
 											System.out.println("No Reservations currently");
@@ -386,7 +392,7 @@ public class Driver{
 							do{
 								valid = true;
 								System.out.print("\nInput new hotel name: ");
-								input = scan.next();
+								input = scan.nextLine();
 								
 								for(int i = 0; i < hotelList.size(); i++) {
 									if(input.equals(hotelList.get(i).getHotelName()) && i != hotelIndexManage) {
@@ -536,7 +542,7 @@ public class Driver{
 								}
 								
 								printString("Input: ");
-								guest = scan.next();
+								guest = scan.nextLine();
 								
 								for(int i = 0; i < hotelList.get(hotelIndexManage).getReservationsList().size(); i++) {
 									if(hotelList.get(hotelIndexManage).getReservationsList().get(i).getGuestName().equals(guest)) {
@@ -611,7 +617,8 @@ public class Driver{
 					System.out.println("|Booking|");
 					
 					printString("Please Input Guest Name: ");
-					name = scan.next();
+					buffer = scan.nextLine();
+					name = scan.nextLine();
 		
 					
 					do {
@@ -621,7 +628,7 @@ public class Driver{
 					}
 					
 					System.out.print("Input: ");
-					buffer = scan.nextLine();
+					//buffer = scan.nextLine();
 					hotelName = scan.nextLine();
 					for(int i = 0; i < hotelList.size(); i++) {
 						if(hotelName.equals(hotelList.get(i).getHotelName())) {

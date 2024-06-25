@@ -24,6 +24,7 @@ public class Management {
 	 */
 	public static void displayReservation(Reservation reservation) {
 		System.out.println("Guest name: " + reservation.getGuestName() + "\n");
+		System.out.println("Room: " + reservation.getRoomInfo().getRoomName());
 		System.out.println("Dates Booked:\n" +  "Check-in: " + reservation.getCheckIn() + "  Check-out: " + reservation.getCheckOut());
 		System.out.println("Overnight dates: " + reservation.getDaysStay() + "\n");
 		System.out.println("Cost per night: " + reservation.getRoomInfo().getPrice());
