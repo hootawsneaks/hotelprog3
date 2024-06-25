@@ -563,7 +563,7 @@ public class Driver{
 										System.out.print("Input (y) yes , (n) no: ");
 										confirmation = scan.next();
 										if(confirmation.equals("y")){
-											hotelList.get(hotelIndexManage).getReservationsList().remove(guestIndex);
+											hotelList.get(hotelIndexManage).removeReservation(guestIndex);
 										}
 								}
 								

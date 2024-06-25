@@ -113,23 +113,22 @@ public class Hotel{
 	 * 	@param guestName is a string that is within a reservation; used for searching the list.
 	 *  @return true if successfully removed, false if otherwise.
 	 */
-    public boolean removeReservation(String guestName) {
+    public boolean removeReservation(int guestIndex) {
     	//int guestIndex;
     	//String roomName;
     	int reservationDay = 0;
     	
     	int k = 0;
     	
-    	for(int i = 0; i < this.reservationsList.size(); i++) {
-    		if(this.reservationsList.get(i).getGuestName().equals(guestName)) {
+    	
     			//roomName = this.reservationsList.get(i).getRoomInfo().getRoomName();
     			for(int j = 0; j < this.roomsList.size(); j++) {
-    				if(this.reservationsList.get(i).getRoomInfo().getRoomName() == this.roomsList.get(j).getRoomName()) {
+    				if(this.reservationsList.get(guestIndex).getRoomInfo().getRoomName() == this.roomsList.get(j).getRoomName()) {
     					while( k < this.roomsList.get(j).getDatesBooked().size()) {
     						
-    						if(this.roomsList.get(j).getDatesBooked().get(k) == this.reservationsList.get(i).getDaysStay().get(reservationDay) ) {
+    						if(this.roomsList.get(j).getDatesBooked().get(k) == this.reservationsList.get(guestIndex).getDaysStay().get(reservationDay) ) {
     							this.roomsList.get(j).getDatesBooked().remove(k);
-    							if(reservationDay < this.reservationsList.get(i).getDaysStay().size() - 1) {
+    							if(reservationDay < this.reservationsList.get(guestIndex).getDaysStay().size() - 1) {
     								reservationDay++;
     							}
     						}
@@ -137,11 +136,10 @@ public class Hotel{
     							k++;
     						}
     						
-    					}
-    				}
+    					
     			}
     			
-    			this.reservationsList.remove(i);
+    			this.reservationsList.remove(guestIndex);
     			return true;
     		}
     
