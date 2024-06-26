@@ -6,11 +6,22 @@ public class Room{
     //private boolean status = true;//true means open room
     private float price;
 
+    /**
+     * Class constructor for a room. Has 2 variables: The room name and the price of the room.
+     * @param roomName is the name of the room
+     * @param price is the price of the room
+     */
     public Room(int roomName, float price){
         this.roomName = roomName;
         this.price = price;
     }
     
+    /**
+     * Given a span of days, makes these days considered booked by putting 
+     * it in a list called datesBookedList
+     * @param checkIn is the start of the timespan
+     * @param checkOut is the end of the timespan
+     */
     public void setDatesBooked(int checkIn, int checkOut) {
     	int n = checkIn;
     	do {
@@ -50,11 +61,18 @@ public class Room{
           }
         */
       
-    
+    /**
+     * Changes a room's name
+     * @param roomName is a String that you want the room's name to be set to.
+     */
     public void changeRoomName(int roomName) {
     	this.roomName = roomName;
     }
     
+    /**
+     * Changes the hotel's pricing for all rooms.
+     * @param price is a float that represents the price of a given room.
+     */
     public void changePrice(float price) {
     	this.price = price;
     }
@@ -67,15 +85,28 @@ public class Room{
     	return this.status;
     }
     */
+
+   /**
+    * Gets a room's name
+    * @return a String that represents the room name
+    */
     public int getRoomName(){
         return this.roomName;
     }
 
+    /**
+    * Gets all the dates which are booked
+    * @return a list of integers
+    */
     public ArrayList<Integer> getDatesBooked(){
     	
         return this.datesBookedList;
     }
     
+    /**
+     * Get the price of the room
+     * @return an integer the represents the price
+     */
     public float getPrice() {
     	return this.price;
     }
